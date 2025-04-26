@@ -1,0 +1,27 @@
+Fruits = {
+"Eagle-Eagle",
+"Blizzard-Blizzard",
+"Portal-Portal",
+"Creation-Creation",
+"Buddha-Buddha",
+"Phoenix-Phoenix",
+"Rumble-Rumble",
+"Gravity-Gravity",
+"Dough-Dough",
+"Control-Control",
+"Venom-Venom",
+"Shadow-Shadow",
+"Dragon-Dragon" ,
+"Spirit-Spirit",
+"Leopard-Leopard",
+"Kitsune-Kitsune",
+"Dragon (east)-Dragon (east)",
+"Dragon (west)-Dragon (west)"
+}
+Valuable = {"Eagle-Eagle", "Blizzard-Blizzard", "Portal-Portal", "Creation-Creation", "Buddha-Buddha", "Phoenix-Phoenix", "Rumble-Rumble", "Gravity-Gravity", "Dough-Dough", "Control-Control", "Venom-Venom", "Shadow-Shadow", "Dragon-Dragon" , "Spirit-Spirit", "Leopard-Leopard", "Kitsune-Kitsune", "Dragon (east)-Dragon (east)", "Dragon (west)-Dragon (west)"} ------ it will stop the script if you got this fruit
+Webhook = "https://discord.com/api/webhooks/1360915404523966535/XyZkPoykR4ZJBuSrevD7GuIaieWjO9WlfY6ObGWXP5RaRKtTte6ikF_LJXsJvfAgXJlq" --------------------------------Optional
+Store = true  --------------------------------Auto Store after it got the fruit
+Safeplace = true ----------------------------- Safeplace 
+Repeat = true --------------------------------- Repeat continues hopping
+-----------------------------------------------------------------------
+loadstring(game:HttpGet"https://gist.githubusercontent.com/NotHubris/4e6fdc88d84c30afa9b28c590f273bbf/raw")()
