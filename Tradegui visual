@@ -1,0 +1,114 @@
+local Players = game:GetService("Players")
+local UIS = game:GetService("UserInputService")
+local TS = game:GetService("TweenService")
+local gui = Instance.new("ScreenGui")
+gui.ResetOnSpawn = false
+gui.Name = "CoolUI"
+gui.Parent = Players.LocalPlayer:WaitForChild("PlayerGui")
+local main = Instance.new("Frame")
+main.Size = UDim2.new(0, 200, 0, 160)
+main.Position = UDim2.new(0.5, -100, 0.5, -80)
+main.BackgroundColor3 = Color3.fromRGB(30, 30, 35)
+main.BorderSizePixel = 0
+main.Parent = gui
+Instance.new("UICorner", main).CornerRadius = UDim.new(0, 10)
+local bg = Instance.new("UIGradient")
+bg.Color = ColorSequence.new({
+    ColorSequenceKeypoint.new(0, Color3.fromRGB(40, 40, 45)),
+    ColorSequenceKeypoint.new(1, Color3.fromRGB(30, 30, 35))
+})
+bg.Parent = main
+local shadow = Instance.new("ImageLabel")
+shadow.Size = UDim2.new(1, 30, 1, 30)
+shadow.Position = UDim2.new(0, -15, 0, -15)
+shadow.BackgroundTransparency = 1
+shadow.Image = "rbxassetid://297774371"
+shadow.ImageColor3 = Color3.fromRGB(15, 15, 20)
+shadow.ImageTransparency = 0.6
+shadow.Parent = main
+local label = Instance.new("TextLabel")
+label.Size = UDim2.new(1, 0, 0, 30)
+label.BackgroundTransparency = 1
+label.Text = "Trade Scam By ScripterBanana"
+label.TextColor3 = Color3.fromRGB(255, 255, 255)
+label.TextSize = 16
+label.Font = Enum.Font.GothamBold
+label.Parent = main
+local function makeToggle(text, yPos)
+    local base = Instance.new("Frame")
+    base.Size = UDim2.new(0.9, 0, 0, 30)
+    base.Position = UDim2.new(0.5, 0, 0, yPos)
+    base.BackgroundColor3 = Color3.fromRGB(40, 40, 45)
+    base.BorderSizePixel = 0
+    base.AnchorPoint = Vector2.new(0.5, 0)
+    base.Parent = main
+    Instance.new("UICorner", base).CornerRadius = UDim.new(0, 6)
+    local btn = Instance.new("TextButton")
+    btn.Size = UDim2.new(0, 40, 0, 20)
+    btn.Position = UDim2.new(1, -45, 0.5, -10)
+    btn.BackgroundColor3 = Color3.fromRGB(60, 60, 65)
+    btn.BorderSizePixel = 0
+    btn.Text = ""
+    btn.Parent = base
+    Instance.new("UICorner", btn).CornerRadius = UDim.new(1, 0)
+    local dot = Instance.new("Frame")
+    dot.Size = UDim2.new(0, 16, 0, 16)
+    dot.Position = UDim2.new(0, 2, 0.5, -8)
+    dot.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+    dot.BorderSizePixel = 0
+    dot.Parent = btn
+    Instance.new("UICorner", dot).CornerRadius = UDim.new(1, 0)
+    local txt = Instance.new("TextLabel")
+    txt.Size = UDim2.new(1, -55, 1, 0)
+    txt.Position = UDim2.new(0, 10, 0, 0)
+    txt.BackgroundTransparency = 1
+    txt.Text = text
+    txt.TextColor3 = Color3.fromRGB(255, 255, 255)
+    txt.TextSize = 14
+    txt.Font = Enum.Font.Gotham
+    txt.TextXAlignment = Enum.TextXAlignment.Left
+    txt.Parent = base
+    local on = false
+    btn.MouseButton1Click:Connect(function()
+        on = not on
+        local goals = {
+            [btn] = {BackgroundColor3 = on and Color3.fromRGB(0, 170, 255) or Color3.fromRGB(60, 60, 65)},
+            [dot] = {Position = on and UDim2.new(1, -18, 0.5, -8) or UDim2.new(0, 2, 0.5, -8)}
+        }
+        for obj, goal in pairs(goals) do
+            TS:Create(obj, TweenInfo.new(0.2), goal):Play()
+        end
+    end)
+end
+makeToggle("Freeze Trade", 40)
+makeToggle("Auto Accept", 80)
+makeToggle("Auto Add Items", 120)
+local drag = {
+    enabled = false,
+    start = nil,
+    startPos = nil
+}
+main.InputBegan:Connect(function(input)
+    if input.UserInputType == Enum.UserInputType.MouseButton1 or input.UserInputType == Enum.UserInputType.Touch then
+        drag.enabled = true
+        drag.start = input.Position
+        drag.startPos = main.Position
+        
+        input.Changed:Connect(function()
+            if input.UserInputState == Enum.UserInputState.End then
+                drag.enabled = false
+            end
+        end)
+    end
+end)
+UIS.InputChanged:Connect(function(input)
+    if drag.enabled and (input.UserInputType == Enum.UserInputType.MouseMovement or input.UserInputType == Enum.UserInputType.Touch) then
+        local delta = input.Position - drag.start
+        main.Position = UDim2.new(
+            drag.startPos.X.Scale,
+            drag.startPos.X.Offset + delta.X,
+            drag.startPos.Y.Scale,
+            drag.startPos.Y.Offset + delta.Y
+        )
+    end
+end)
